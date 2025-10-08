@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25vw;
+  height: 25vw;
+  align-content: flex-start;
+}
+
+.container div {
+  height: 6.25%;
+  width: 6.25%;
+  border: solid 1px black;
+  background-color: lightblue;
+}
