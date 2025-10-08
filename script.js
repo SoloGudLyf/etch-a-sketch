@@ -20,14 +20,20 @@ container.addEventListener("mouseover", (e) => {
   )} ${Math.floor(Math.random() * 256)}`;
   divHovered.style.backgroundColor = randomColor;
 
-  // Produce progressive darkening effect 
+  // Produce progressive darkening effect
   divHovered.style.opacity = 1 - 0.1 * gridSquareArr.length;
 });
 
 setGridSizeBtn.addEventListener("click", () => {
   container.innerHTML = "";
   let size = +prompt("How many squares per side do you want for the new grid?");
-  createGrid(size);
+  if (size > 100) {
+    alert("Grid size should be less than 100");
+    alert("Defaulting to 16x16 grid");
+    createGrid(16);
+  } else {
+    createGrid(size);
+  }
 });
 
 createGrid(16);
