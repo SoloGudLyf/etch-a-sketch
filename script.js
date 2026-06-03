@@ -12,16 +12,19 @@ function createGrid(num) {
 
 container.addEventListener("mouseover", (e) => {
   let divHovered = e.target;
-  gridSquareArr.push(divHovered); // Help count number of squares hovered
+  if (!gridSquareArr.includes(divHovered)) {
+    gridSquareArr.push(divHovered); // Insert element if not hovered upon
 
-  //Set random color upon hovering a square
-  let randomColor = `rgb(${Math.floor(Math.random() * 256)} ${Math.floor(
-    Math.random() * 256
-  )} ${Math.floor(Math.random() * 256)}`;
-  divHovered.style.backgroundColor = randomColor;
+    //Set random color upon hovering a square
+    let randomColor = `rgb(${Math.floor(Math.random() * 256)} ${Math.floor(
+      Math.random() * 256,
+    )} ${Math.floor(Math.random() * 256)}`;
+    divHovered.style.backgroundColor = randomColor;
 
-  // Produce progressive darkening effect
-  divHovered.style.opacity = 1 - 0.1 * gridSquareArr.length;
+    // Produce progressive darkening effect
+    let reductionFactor = 1 / Number(container.childElementCount);
+    divHovered.style.opacity = 1 - reductionFactor * gridSquareArr.length;
+  }
 });
 
 setGridSizeBtn.addEventListener("click", () => {
@@ -33,6 +36,7 @@ setGridSizeBtn.addEventListener("click", () => {
     createGrid(16);
   } else {
     createGrid(size);
+    gridSquareArr = [];
   }
 });
 
